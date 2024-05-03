@@ -8,8 +8,7 @@
 3. Spracherkennung (Programm kann von einem Text die Sprache erkennen.) Das Programm soll eingereichte Texte Analysieren und von denen schliesslich die Sprache zu erkennen und als Antwort ausgeben soll.
 
 ## 03.5.2024
-
-✍️ Heute habe ich... (50-100 Wörter)
+Heute habe ich damit begonnen mich mit meinem Projekt auseinander zusetzten. Dabei habe ich das Prinzip gelernt wie ich das ganze umsetzen möchte. Und zwar suche ich nach Texten in der Sprache die erkannt werden soll, lass mir daraus eine Wahrscheinlichkeit berechnen wie oft jeder Buchstabe vorkommt, und mithilfe dieser Wahrscheinlichkeit habe ich den Vorteil das es nicht all zu kompliziert ist Beispielsweise Schweizer Dialekte zu erkennen. (67)
 
 ## 17.5.2024
 
