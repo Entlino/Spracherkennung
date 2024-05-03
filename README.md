@@ -7,11 +7,11 @@
 2. **VBV** Für den Verbesserungsvorschlag möchte ich in der letzten Lernperiode ausschliesslich an dem Projekt arbeiten und versuchen, auf Modularbeit zu verzichten.
 3. Spracherkennung (Programm kann von einem Text die Sprache erkennen.) Das Programm soll eingereichte Texte Analysieren und von denen schliesslich die Sprache zu erkennen und als Antwort ausgeben soll.
 
-## 23.4.2024
+## 03.5.2024
 
 ✍️ Heute habe ich... (50-100 Wörter)
 
-## 30.4.2024
+## 17.5.2024
 
 - [ ] Buchstabenwiederholungsdaten, für die Sprachen für Deutsch, Englisch, Französisch. (Texte finden und dann analysieren lassen.)
 - [ ] Buchstabenwiederholungsdaten, für Berner Dialekt. (Texte finden und dann analysieren lassen.)
