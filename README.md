@@ -13,9 +13,10 @@
 
 ## 30.4.2024
 
-- [ ] Erstes Arbeitspaket
-- [ ] ...
-- [ ] Viertes AP
+- [ ] Buchstabenwiederholungsdaten, für die Sprachen für Deutsch, Englisch, Französisch. (Texte finden und dann analysieren lassen.)
+- [ ] Buchstabenwiederholungsdaten, für Berner Dialekt. (Texte finden und dann analysieren lassen.)
+- [ ] Buchstabenwiederholungsdaten, für Zürcher Dialekt. (Texte finden und dann analysieren lassen.)
+- [ ] Buchstabenwiederholungsdaten, für Walliser Dialekt. (Texte finden und dann analysieren lassen.)
 
 ✍️ Heute habe ich... (50-100 Wörter)
 
