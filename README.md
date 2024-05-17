@@ -19,6 +19,13 @@ Heute habe ich damit begonnen mich mit meinem Projekt auseinander zusetzten. Dab
 
 Am heutigen Tag habe ich damit begonnen, zuerst die Aufträge, welche ich mir vorgenommen habe, zu erledigen. Da ich diese nach etwa 50 % der Zeit erledigen konnte, da ich schneller die Wahrscheinlichkeiten der verschiedenen Dialekten analysieren lassen konnte, habe ich danach weiter an meiner Website programmiert, welche ich gerade für das Modul 293. In Bezug auf die Website kam mir noch der Gedanke, dass es schliesslich praktisch wäre, wenn man das Spracherkennungsprogramm auf der Website einbinden kann, damit man das Tool auch auf dem Web brauchen könnte. Dies ist jedoch nur eine mögliche Erweiterung meines Projektes und bisher nicht sicher.
 
+https://entlino.github.io/Modul293/ 
+Meine Website
 
 
-☝️ Vergessen Sie nicht, bis einen ersten Code auf github hochzuladen
+## 24.05.2024
+
+- [ ] Grundanwendung erstellen für meinen Spracherkenner.
+- [ ] Deutsche Sprache inkl. Daten einfügen, testen und evt verbessern.
+- [ ] Französische Sprache inkl. Daten einfügen, testen und evt verbessern.
+- [ ] Englische Sprache inkl. Daten einfügen, testen und evt verbessern.
