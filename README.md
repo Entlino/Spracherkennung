@@ -31,7 +31,7 @@ Meine Website
 - [x] Englische Sprache inkl. Daten einfügen, testen und evt verbessern.
 
 
-Heute habe ich, wie in den Arbeitspaketen beschrieben, damit begonnen, das C# Programm zu schreiben. Dabei habe ich damit begonnen, das Programm zu erstellen, und erstmals die Sprachen Englisch, Französisch, Deutsch, Italienisch und Spanisch hinzugefügt. Da es leider noch gewisse Probleme mit dem Erkennen der Sprachen gibt, konnte ich bisher nicht damit fortfahren, die Dialekte hinzuzufügen. Dies werde ich, wenn möglich, nächste Woche erledigen, falls ich bis dann die Fehler beheben konnte.
+Heute habe ich, wie in den Arbeitspaketen beschrieben, damit begonnen, das C# Programm zu schreiben. Dabei habe ich damit begonnen, das Programm zu erstellen, und erstmals die Sprachen Englisch, Französisch, Deutsch, Italienisch und Spanisch hinzugefügt. Da es leider noch gewisse Probleme mit dem Erkennen der Sprachen gibt, konnte ich bisher nicht damit fortfahren, die Dialekte hinzuzufügen. Dies werde ich, wenn möglich, nächste Woche erledigen, falls ich bis dann die Fehler beheben konnte. (72)
 
 ## 31.05.2024
 
