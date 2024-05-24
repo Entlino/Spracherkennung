@@ -25,7 +25,17 @@ Meine Website
 
 ## 24.05.2024
 
-- [ ] Grundanwendung erstellen für meinen Spracherkenner.
-- [ ] Deutsche Sprache inkl. Daten einfügen, testen und evt verbessern.
-- [ ] Französische Sprache inkl. Daten einfügen, testen und evt verbessern.
-- [ ] Englische Sprache inkl. Daten einfügen, testen und evt verbessern.
+- [x] Grundanwendung erstellen für meinen Spracherkenner.
+- [x] Deutsche Sprache inkl. Daten einfügen, testen und evt verbessern.
+- [x] Französische Sprache inkl. Daten einfügen, testen und evt verbessern.
+- [x] Englische Sprache inkl. Daten einfügen, testen und evt verbessern.
+
+
+Heute habe ich, wie in den Arbeitspaketen beschrieben, damit begonnen, das C# Programm zu schreiben. Dabei habe ich damit begonnen, das Programm zu erstellen, und erstmals die Sprachen Englisch, Französisch, Deutsch, Italienisch und Spanisch hinzugefügt. Da es leider noch gewisse Probleme mit dem Erkennen der Sprachen gibt, konnte ich bisher nicht damit fortfahren, die Dialekte hinzuzufügen. Dies werde ich, wenn möglich, nächste Woche erledigen, falls ich bis dann die Fehler beheben konnte.
+
+## 31.05.2024
+
+- [ ] Fehlerbeheben damit die Texte erkannt werden.
+- [ ] Programm mit verschiedene Texte testen.
+- [ ] Wiederholungen ins Programm einbauen.
+- [ ] Antworten, und eingabe Texte bearbeiten und erneuern. Ebenso den Code vorerst raus putzen und überarbeiten.
