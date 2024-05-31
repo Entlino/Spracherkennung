@@ -37,5 +37,14 @@ Heute habe ich, wie in den Arbeitspaketen beschrieben, damit begonnen, das C# Pr
 
 - [ ] Fehlerbeheben damit die Texte erkannt werden.
 - [ ] Programm mit verschiedene Texte testen.
-- [ ] Wiederholungen ins Programm einbauen.
-- [ ] Antworten, und eingabe Texte bearbeiten und erneuern. Ebenso den Code vorerst raus putzen und überarbeiten.
+- [x] Wiederholungen ins Programm einbauen.
+- [x] Antworten, und eingabe Texte bearbeiten und erneuern. Ebenso den Code vorerst raus putzen und überarbeiten.
+
+Am heutigen Tage bzw. in den letzten Tage als ich meine Arbeit erledigt habe habe ich erstmals versuch damit zu beginnen den Fehler zu beheben. Dies ist mir leider immer noch nicht gelungen. Als ich dann aus Frust erstmals weiter gegangen bin habe ich die letzteren Aufträge des Tages erfolgreich erledigen können. Da leider meine Motivation nicht mehr allzu vorhanden war habe ich mich dazu entschlossen, an meiner Website weiter zu programmieren. 
+
+## 07.06.2024
+
+- [ ] Website Modul 293 Kontakt formular einen Nutzen geben
+- [ ] Website Modul 293 Kontakt formular einen Nutzen geben 2
+- [ ] Navigationsprobleme beheben
+- [ ] Website mit pseudo Texten sowie Bildern anschaulicher Gestalten
