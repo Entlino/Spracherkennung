@@ -48,3 +48,9 @@ Am heutigen Tage bzw. in den letzten Tage als ich meine Arbeit erledigt habe hab
 - [ ] Website Modul 293 Kontakt formular einen Nutzen geben 2
 - [ ] Navigationsprobleme beheben
 - [ ] Website mit pseudo Texten sowie Bildern anschaulicher Gestalten
+
+Nach dem heutigen Einzelgespräch habe ich damit begonnen, meine Arbeitspakete leicht anzupassen. Ich habe die Funfacts Seite auf meiner Webseite angepasst, in dem ich das Ganze in eine "Ol" eingefügt habe und nun darüber das CSS-File zu bearbeiten. Da dies den Code um einiges aufräumt. Zudem habe ich am Ende noch versucht, das ganze mit Variablen noch besser zu verbessern; dies gelang mir aber nicht vollständig.
+
+## 14.06.2024
+
+- [ ] C# Programm Spracherkennung erweitern in
