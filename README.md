@@ -59,4 +59,127 @@ Nach dem heutigen Einzelgespräch habe ich damit begonnen, meine Arbeitspakete l
 - [ ] Kontakt fomular automatisisieren
 - [ ] Systemhinter Doppelbuchstabenwiederholungsabfrage finden
 - [ ] Die Wiederholungen werden automatisch in einer Datei gespeichert und am Anfang eingelesen.
-      
+
+
+Am heutigen Tage habe ich an meinen beiden Projekten gearbeitet, zuerst habe ich mich am Anfang mit meiner Website den Text automatisch Links und Rechts anbinden lassen. Vorerst ging dies nicht, aber irgendwann konnte ich das ganze, ohne Veränderungen vorzunehmen, neu starten und dann ging alles wie gewollt. Das Arbeitspaket mit dem Kontakt-Formular habe ich nicht erledigt, da ich noch ein Gespräch mir Herrn Colic hatte, nach welchem ich mich direkt wieder ans C#-Programm und somit 2te Projekt gewandt habe. Bei welchem ich nun ein neues Ziel verfolge. Jetzt möchte ich nämlich, dass nicht nur auf die Buchstabenwahrscheinlichkeiten gesetzt wird, sondern dass man auf einen Doppelbuchstabenwahrscheinlichkeitsrechner setzt. 
+
+Der Code für meine Website befindet sich in meinem Git "Modul293".
+
+Folgend mein C# Code:
+
+Als Erstes wird ein etwas schöneres "UI" ausgegeben und der Ablauf des Programms wird mit den Variablen bestimmt.
+
+
+```csharp
+        string pairFrequenciesFilePath = "pairFrequencies.txt";
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("========================================");
+        Console.WriteLine("   Willkommen zum Textanalyse-Programm  ");
+        Console.WriteLine("========================================");
+        Console.ResetColor();
+
+        Console.WriteLine("Bitte geben Sie den Text ein, den Sie analysieren möchten:");
+        string text = Console.ReadLine();
+
+        Dictionary<string, int> pairFrequencies = ReadPairFrequenciesFromFile(pairFrequenciesFilePath);
+
+        UpdatePairFrequencies(pairFrequencies, text);
+
+        WritePairFrequenciesToFile(pairFrequencies, pairFrequenciesFilePath);
+
+        PrintPairProbabilities(pairFrequencies);
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("========================================");
+        Console.WriteLine("       Analyse abgeschlossen!           ");
+        Console.WriteLine("========================================");
+        Console.ResetColor();
+
+```
+
+Dann wird in der ersten Variablen erstmals die bereits gespeicherten Daten eingelesen.
+
+```csharp
+    static Dictionary<string, int> ReadPairFrequenciesFromFile(string filePath)
+    {
+        var frequencies = new Dictionary<string, int>();
+
+        if (File.Exists(filePath))
+        {
+            var lines = File.ReadAllLines(filePath);
+            foreach (var line in lines)
+            {
+                var parts = line.Split(',');
+                if (parts.Length == 2)
+                {
+                    frequencies[parts[0]] = int.Parse(parts[1]);
+                }
+            }
+        }
+
+        return frequencies;
+    }
+```
+
+Dann werden die Wahrscheinlichkeiten, welche gerade eingelesen wurde aktualisiert, aber noch im Array gespeichert.
+```csharp
+    static void UpdatePairFrequencies(Dictionary<string, int> frequencies, string text)
+    {
+        text = new string(text.Where(char.IsLetter).ToArray()).ToLower();
+
+        for (int i = 0; i < text.Length - 1; i++)
+        {
+            string pair = text.Substring(i, 2);
+            if (frequencies.ContainsKey(pair))
+            {
+                frequencies[pair]++;
+            }
+            else
+            {
+                frequencies[pair] = 1;
+            }
+        }
+    }
+
+```
+
+
+Der vorher generierte und gedatete Array wird nun in das File übertragen, um beim nächsten Mal den aktuellsten Stand zu haben.
+```csharp
+    static void WritePairFrequenciesToFile(Dictionary<string, int> frequencies, string filePath)
+    {
+        var lines = frequencies.Select(kvp => $"{kvp.Key},{kvp.Value}");
+        File.WriteAllLines(filePath, lines);
+    }
+```
+
+
+Schlussendlich gibt mir nun das Programm die gerade errechneten Wahrscheinlichkeiten aus, dies würde ich in Zukunft noch weglassen jedoch habe ich es aktuell noch beibehalten, um zu überprüfen, ob das Ganze funktioniert.
+```csharp
+    static void PrintPairProbabilities(Dictionary<string, int> frequencies)
+    {
+        int total = frequencies.Values.Sum();
+        Console.WriteLine("Buchstabenpaar-Wahrscheinlichkeiten:");
+        Console.WriteLine("------------------------------------");
+
+        foreach (var kvp in frequencies)
+        {
+            double probability = (double)kvp.Value / total;
+            Console.WriteLine($"{kvp.Key}: {probability:P2}");
+        }
+
+        Console.WriteLine("------------------------------------");
+    }
+```
+
+(461 Wörter)
+
+## Arbeitspakete 21.06.2024
+
+
+- [ ] C# Programm für Deutsch einrichten
+- [ ] C# Programm für Englisch einrichten
+- [ ] C# Programm für Franzöisch einrichten
+- [ ] C# Programm Sprache ausgeben + Wahrscheinlichkeiten verstecken
