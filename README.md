@@ -1,6 +1,8 @@
 # Lern-Periode-5
 23.4 bis 25.6.2024
 
+(Website-Code: https://github.com/Entlino/Modul293/)
+
 ## Grob-Planung
 
 1. Meine Noten befinden sich im akzeptablem Bereich, nebest einer leicht ungenügenden Note im Module 319 habe ich neben einer 4 alle Noten zwischen einer 5 und 6.
