@@ -53,4 +53,8 @@ Nach dem heutigen Einzelgespräch habe ich damit begonnen, meine Arbeitspakete l
 
 ## 14.06.2024
 
-- [ ] C# Programm Spracherkennung erweitern in
+- [ ] HTML Liste (ol) mihilfe von nummerierenungen im CSS automatisch ansteuern
+- [ ] Kontakt fomular automatisisieren
+- [ ] Systemhinter Doppelbuchstabenwiederholungsabfrage finden
+- [ ] Die Wiederholungen werden automatisch in einer Datei gespeichert und am Anfang eingelesen.
+      
