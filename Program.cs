@@ -48,10 +48,8 @@ class Program
 
     static void TrainingMode(string pairProbabilitiesFilePath)
     {
-        // Überprüfe, ob die Datei existiert; falls nicht, erstelle sie mit initialen Werten
         EnsurePairProbabilitiesFileExists(pairProbabilitiesFilePath);
 
-        // Lese die initialen Wahrscheinlichkeiten aus der Datei
         Dictionary<string, Dictionary<string, double>> pairProbabilities = ReadPairProbabilitiesFromFile(pairProbabilitiesFilePath);
 
         Console.WriteLine("Bitte geben Sie die Sprache ein, für die Sie trainieren möchten (Englisch, Französisch, Deutsch):");
@@ -67,22 +65,17 @@ class Program
         Console.WriteLine("Bitte geben Sie den Text ein, den Sie analysieren möchten:");
         string text = Console.ReadLine();
 
-        // Extrahiere Paar-Frequenzen aus dem eingegebenen Text
         Dictionary<string, int> pairFrequencies = ExtractPairFrequencies(text);
 
-        // Aktualisiere die Wahrscheinlichkeiten basierend auf den extrahierten Frequenzen und der ausgewählten Sprache
         UpdatePairProbabilities(pairFrequencies, trainingLanguage, pairProbabilities);
 
-        // Schreibe die aktualisierten Wahrscheinlichkeiten zurück in die Datei
         WritePairProbabilitiesToFile(pairProbabilities, pairProbabilitiesFilePath);
 
-        // Optional: Feedback an den Benutzer, dass das Training abgeschlossen ist
         Console.WriteLine("Training abgeschlossen. Die Wahrscheinlichkeiten wurden aktualisiert und gespeichert.");
     }
 
     static void TestMode(string pairProbabilitiesFilePath)
     {
-        // Lese die aktuellen Wahrscheinlichkeiten aus der Datei
         Dictionary<string, Dictionary<string, double>> pairProbabilities = ReadPairProbabilitiesFromFile(pairProbabilitiesFilePath);
 
         if (pairProbabilities.Count == 0)
@@ -94,13 +87,10 @@ class Program
         Console.WriteLine("Bitte geben Sie den Text ein, den Sie analysieren möchten:");
         string text = Console.ReadLine();
 
-        // Extrahiere Paar-Frequenzen aus dem eingegebenen Text
         Dictionary<string, int> pairFrequencies = ExtractPairFrequencies(text);
 
-        // Erkenne die Sprache basierend auf den vorhandenen Wahrscheinlichkeiten
         string detectedLanguage = DetectLanguage(pairProbabilities, pairFrequencies);
 
-        // Gib die erkannte Sprache aus
         Console.WriteLine($"Sprache erkannt als: {detectedLanguage}");
     }
 
@@ -128,19 +118,16 @@ class Program
 
     static void UpdatePairProbabilities(Dictionary<string, int> frequencies, string language, Dictionary<string, Dictionary<string, double>> pairProbabilities)
     {
-        // Berechne die Gesamtsumme der Frequenzen
+
         int total = frequencies.Values.Sum();
 
-        // Iteriere über die extrahierten Frequenzen und aktualisiere die Wahrscheinlichkeiten
         foreach (var pair in frequencies)
         {
             string digraph = pair.Key;
             int frequency = pair.Value;
 
-            // Berechne die relative Häufigkeit dieses Digraphs
             double relativeFrequency = (double)frequency / total;
 
-            // Aktualisiere die Wahrscheinlichkeiten für die ausgewählte Sprache in der Tabelle
             if (!pairProbabilities.ContainsKey(digraph))
             {
                 pairProbabilities[digraph] = new Dictionary<string, double>
@@ -185,14 +172,13 @@ class Program
                         string digraph = parts[0].Trim();
                         var probabilities = parts[1].Split(',').Select(p => double.Parse(p.Trim())).ToArray();
 
-                        if (probabilities.Length >= 3) // Mindestens drei Wahrscheinlichkeiten (Englisch, Französisch, Deutsch)
+                        if (probabilities.Length >= 3) 
                         {
                             pairProbabilities[digraph] = new Dictionary<string, double>
                             {
                                 { "englisch", probabilities[0] },
                                 { "französisch", probabilities[1] },
                                 { "deutsch", probabilities[2] }
-                                // Weitere Sprachen nach Bedarf hinzufügen
                             };
                         }
                         else
@@ -223,12 +209,11 @@ class Program
     {
         if (!File.Exists(filePath))
         {
-            // Erstelle eine neue Datei und initialisiere sie mit leeren Paar-Wahrscheinlichkeiten
-            File.WriteAllText(filePath, "aa: 0.0000, 0.0000, 0.0000\n" +
-                                       "ab: 0.0000, 0.0000, 0.0000\n" +
-                                       "ac: 0.0000, 0.0000, 0.0000\n" +
-                                       // Füge weitere Digraphen nach Bedarf hinzu
-                                       "zz: 0.0000, 0.0000, 0.0000\n");
+            File.WriteAllText(filePath, "aa: 0.0000, 0.0000, 0.0000" +
+                                       "ab: 0.0000, 0.0000, 0.0000" +
+                                       "ac: 0.0000, 0.0000, 0.0000" +
+
+                                    
         }
     }
 
