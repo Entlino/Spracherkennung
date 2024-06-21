@@ -1,80 +1,270 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
-namespace ConsoleApp
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        string pairProbabilitiesFilePath = "pairProbabilities.txt";
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("========================================");
+        Console.WriteLine("   Willkommen zum Spracherkennungs-Programm  ");
+        Console.WriteLine("========================================");
+        Console.ResetColor();
+
+        Console.WriteLine("Bitte wählen Sie den Modus aus:");
+        Console.WriteLine("1 - Trainingsmodus (Wahrscheinlichkeiten aktualisieren)");
+        Console.WriteLine("2 - Testmodus (Wahrscheinlichkeiten nicht aktualisieren)");
+        Console.Write("Geben Sie die entsprechende Zahl ein: ");
+
+        int modeSelection;
+        while (!int.TryParse(Console.ReadLine(), out modeSelection) || (modeSelection != 1 && modeSelection != 2))
         {
-
-            Console.WriteLine("Willkommen zur Textanalyse-Anwendung!");
-
-            Console.WriteLine("Bitte geben Sie Ihren Text ein:");
-
-            string userInput = Console.ReadLine().ToLower();
-
-            Console.WriteLine("Sie haben folgenden Text eingegeben:");
-            Console.WriteLine(userInput);
-
-            string detectedLanguage = DetermineLanguage(userInput);
-
-            Console.WriteLine($"Die erkannte Sprache ist: {detectedLanguage}");
-
-            Console.WriteLine("Drücken Sie eine beliebige Taste zum Beenden.");
-            Console.ReadKey();
+            Console.WriteLine("Ungültige Eingabe. Bitte geben Sie 1 für Trainingsmodus oder 2 für Testmodus ein.");
+            Console.Write("Versuchen Sie es erneut: ");
         }
 
-        static string DetermineLanguage(string text)
+        bool trainingMode = modeSelection == 1;
+
+        if (trainingMode)
         {
-            double[] englishFrequencies = { 8.167, 1.492, 2.782, 4.253, 12.702, 2.228, 2.015, 6.094, 6.966, 0.153, 0.772, 4.025, 2.406, 6.749, 7.507, 1.929, 0.095, 5.987, 6.327, 9.056, 2.758, 0.978, 2.360, 0.150, 1.974, 0.074 };
-            double[] germanFrequencies = { 6.516, 1.886, 2.732, 5.076, 16.396, 1.656, 3.009, 4.577, 6.550, 0.268, 1.417, 3.437, 2.534, 9.776, 2.594, 0.670, 0.018, 7.003, 7.273, 6.154, 4.166, 0.846, 1.921, 0.034, 0.039, 1.134 };
-            double[] frenchFrequencies = { 7.636, 0.901, 3.260, 3.669, 14.715, 1.066, 0.866, 0.737, 7.529, 0.613, 0.049, 5.456, 2.968, 7.095, 5.796, 2.521, 1.362, 6.693, 7.948, 7.244, 6.311, 1.838, 0.017, 0.427, 0.128, 0.326 };
-            double[] italianFrequencies = { 11.745, 0.927, 4.501, 3.736, 11.792, 1.153, 1.644, 0.637, 10.143, 0.011, 0.009, 6.510, 2.512, 6.883, 9.832, 3.056, 0.505, 6.367, 4.981, 5.623, 3.011, 2.097, 0.033, 0.003, 0.020, 1.181 };
-            double[] spanishFrequencies = { 11.525, 2.215, 4.019, 5.010, 12.181, 0.692, 1.768, 0.703, 6.247, 0.493, 0.011, 4.967, 3.157, 6.712, 8.683, 2.510, 0.877, 6.871, 7.977, 4.632, 2.927, 1.138, 0.017, 0.215, 1.008, 0.467 };
+            TrainingMode(pairProbabilitiesFilePath);
+        }
+        else
+        {
+            TestMode(pairProbabilitiesFilePath);
+        }
 
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("========================================");
+        Console.WriteLine("       Analyse abgeschlossen!           ");
+        Console.WriteLine("========================================");
+        Console.ResetColor();
+    }
 
-            double[] textFrequencies = new double[26];
-            int totalLetters = 0;
+    static void TrainingMode(string pairProbabilitiesFilePath)
+    {
+        // Überprüfe, ob die Datei existiert; falls nicht, erstelle sie mit initialen Werten
+        EnsurePairProbabilitiesFileExists(pairProbabilitiesFilePath);
 
-            foreach (char c in text)
+        // Lese die initialen Wahrscheinlichkeiten aus der Datei
+        Dictionary<string, Dictionary<string, double>> pairProbabilities = ReadPairProbabilitiesFromFile(pairProbabilitiesFilePath);
+
+        Console.WriteLine("Bitte geben Sie die Sprache ein, für die Sie trainieren möchten (Englisch, Französisch, Deutsch):");
+        string trainingLanguage = Console.ReadLine().Trim().ToLower();
+
+        if (string.IsNullOrEmpty(trainingLanguage) ||
+            (trainingLanguage != "englisch" && trainingLanguage != "französisch" && trainingLanguage != "deutsch"))
+        {
+            Console.WriteLine("Ungültige Eingabe. Nur Englisch, Französisch und Deutsch sind erlaubt.");
+            return;
+        }
+
+        Console.WriteLine("Bitte geben Sie den Text ein, den Sie analysieren möchten:");
+        string text = Console.ReadLine();
+
+        // Extrahiere Paar-Frequenzen aus dem eingegebenen Text
+        Dictionary<string, int> pairFrequencies = ExtractPairFrequencies(text);
+
+        // Aktualisiere die Wahrscheinlichkeiten basierend auf den extrahierten Frequenzen und der ausgewählten Sprache
+        UpdatePairProbabilities(pairFrequencies, trainingLanguage, pairProbabilities);
+
+        // Schreibe die aktualisierten Wahrscheinlichkeiten zurück in die Datei
+        WritePairProbabilitiesToFile(pairProbabilities, pairProbabilitiesFilePath);
+
+        // Optional: Feedback an den Benutzer, dass das Training abgeschlossen ist
+        Console.WriteLine("Training abgeschlossen. Die Wahrscheinlichkeiten wurden aktualisiert und gespeichert.");
+    }
+
+    static void TestMode(string pairProbabilitiesFilePath)
+    {
+        // Lese die aktuellen Wahrscheinlichkeiten aus der Datei
+        Dictionary<string, Dictionary<string, double>> pairProbabilities = ReadPairProbabilitiesFromFile(pairProbabilitiesFilePath);
+
+        if (pairProbabilities.Count == 0)
+        {
+            Console.WriteLine("Es konnten keine Sprachdaten gefunden werden. Bitte führen Sie zuerst den Trainingsmodus aus.");
+            return;
+        }
+
+        Console.WriteLine("Bitte geben Sie den Text ein, den Sie analysieren möchten:");
+        string text = Console.ReadLine();
+
+        // Extrahiere Paar-Frequenzen aus dem eingegebenen Text
+        Dictionary<string, int> pairFrequencies = ExtractPairFrequencies(text);
+
+        // Erkenne die Sprache basierend auf den vorhandenen Wahrscheinlichkeiten
+        string detectedLanguage = DetectLanguage(pairProbabilities, pairFrequencies);
+
+        // Gib die erkannte Sprache aus
+        Console.WriteLine($"Sprache erkannt als: {detectedLanguage}");
+    }
+
+    static Dictionary<string, int> ExtractPairFrequencies(string text)
+    {
+        var frequencies = new Dictionary<string, int>();
+
+        text = new string(text.Where(char.IsLetter).ToArray()).ToLower();
+
+        for (int i = 0; i < text.Length - 1; i++)
+        {
+            string pair = text.Substring(i, 2);
+            if (frequencies.ContainsKey(pair))
             {
-                if (c >= 'a' && c <= 'z')
+                frequencies[pair]++;
+            }
+            else
+            {
+                frequencies[pair] = 1;
+            }
+        }
+
+        return frequencies;
+    }
+
+    static void UpdatePairProbabilities(Dictionary<string, int> frequencies, string language, Dictionary<string, Dictionary<string, double>> pairProbabilities)
+    {
+        // Berechne die Gesamtsumme der Frequenzen
+        int total = frequencies.Values.Sum();
+
+        // Iteriere über die extrahierten Frequenzen und aktualisiere die Wahrscheinlichkeiten
+        foreach (var pair in frequencies)
+        {
+            string digraph = pair.Key;
+            int frequency = pair.Value;
+
+            // Berechne die relative Häufigkeit dieses Digraphs
+            double relativeFrequency = (double)frequency / total;
+
+            // Aktualisiere die Wahrscheinlichkeiten für die ausgewählte Sprache in der Tabelle
+            if (!pairProbabilities.ContainsKey(digraph))
+            {
+                pairProbabilities[digraph] = new Dictionary<string, double>
                 {
-                    textFrequencies[c - 'a']++;
-                    totalLetters++;
+                    { "englisch", 0.0 },
+                    { "französisch", 0.0 },
+                    { "deutsch", 0.0 }
+                };
+            }
+
+            pairProbabilities[digraph][language] += relativeFrequency;
+        }
+    }
+
+    static void WritePairProbabilitiesToFile(Dictionary<string, Dictionary<string, double>> pairProbabilities, string filePath)
+    {
+        List<string> lines = new List<string>();
+
+        foreach (var digraph in pairProbabilities)
+        {
+            string line = $"{digraph.Key}: {string.Join(", ", digraph.Value.Select(kvp => kvp.Value.ToString("0.0000")))}";
+            lines.Add(line);
+        }
+
+        File.WriteAllLines(filePath, lines);
+    }
+
+    static Dictionary<string, Dictionary<string, double>> ReadPairProbabilitiesFromFile(string filePath)
+    {
+        var pairProbabilities = new Dictionary<string, Dictionary<string, double>>();
+
+        try
+        {
+            if (File.Exists(filePath))
+            {
+                var lines = File.ReadAllLines(filePath);
+                foreach (var line in lines)
+                {
+                    var parts = line.Split(':');
+                    if (parts.Length == 2)
+                    {
+                        string digraph = parts[0].Trim();
+                        var probabilities = parts[1].Split(',').Select(p => double.Parse(p.Trim())).ToArray();
+
+                        if (probabilities.Length >= 3) // Mindestens drei Wahrscheinlichkeiten (Englisch, Französisch, Deutsch)
+                        {
+                            pairProbabilities[digraph] = new Dictionary<string, double>
+                            {
+                                { "englisch", probabilities[0] },
+                                { "französisch", probabilities[1] },
+                                { "deutsch", probabilities[2] }
+                                // Weitere Sprachen nach Bedarf hinzufügen
+                            };
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Ungültiges Format in der Datei: {filePath}, Zeile: {line}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Ungültiges Format in der Datei: {filePath}, Zeile: {line}");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Die Datei {filePath} existiert nicht.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Fehler beim Lesen der Datei {filePath}: {ex.Message}");
+        }
+
+        return pairProbabilities;
+    }
+
+    static void EnsurePairProbabilitiesFileExists(string filePath)
+    {
+        if (!File.Exists(filePath))
+        {
+            // Erstelle eine neue Datei und initialisiere sie mit leeren Paar-Wahrscheinlichkeiten
+            File.WriteAllText(filePath, "aa: 0.0000, 0.0000, 0.0000\n" +
+                                       "ab: 0.0000, 0.0000, 0.0000\n" +
+                                       "ac: 0.0000, 0.0000, 0.0000\n" +
+                                       // Füge weitere Digraphen nach Bedarf hinzu
+                                       "zz: 0.0000, 0.0000, 0.0000\n");
+        }
+    }
+
+    static string DetectLanguage(Dictionary<string, Dictionary<string, double>> pairProbabilities, Dictionary<string, int> frequencies)
+    {
+        int total = frequencies.Values.Sum();
+        Dictionary<string, double> observedProbabilities = new Dictionary<string, double>();
+
+        foreach (var kvp in frequencies)
+        {
+            double probability = (double)kvp.Value / total;
+            observedProbabilities[kvp.Key] = probability;
+        }
+
+        double minDifference = double.MaxValue;
+        string detectedLanguage = "Unbekannt";
+
+        foreach (var lang in pairProbabilities.First().Value.Keys)
+        {
+            double difference = 0;
+
+            foreach (var pair in observedProbabilities)
+            {
+                if (pairProbabilities.ContainsKey(pair.Key) && pairProbabilities[pair.Key].ContainsKey(lang))
+                {
+                    difference += Math.Abs(pair.Value - pairProbabilities[pair.Key][lang]);
                 }
             }
 
-            for (int i = 0; i < textFrequencies.Length; i++)
+            if (difference < minDifference)
             {
-                textFrequencies[i] = (textFrequencies[i] / totalLetters) * 100;
+                minDifference = difference;
+                detectedLanguage = lang;
             }
-
-            double englishDifference = CalculateDifference(textFrequencies, englishFrequencies);
-            double germanDifference = CalculateDifference(textFrequencies, germanFrequencies);
-            double frenchDifference = CalculateDifference(textFrequencies, frenchFrequencies);
-            double italianDifference = CalculateDifference(textFrequencies, italianFrequencies);
-            double spanishDifference = CalculateDifference(textFrequencies, spanishFrequencies);
-
-            double minDifference = Math.Min(Math.Min(Math.Min(Math.Min(englishDifference, germanDifference), frenchDifference), italianDifference), spanishDifference);
-
-            if (minDifference == englishDifference) return "Englisch";
-            if (minDifference == germanDifference) return "Deutsch";
-            if (minDifference == frenchDifference) return "Französisch";
-            if (minDifference == italianDifference) return "Italienisch";
-            return "Spanisch";
         }
 
-        static double CalculateDifference(double[] textFrequencies, double[] referenceFrequencies)
-        {
-            double difference = 0.0;
-
-            for (int i = 0; i < textFrequencies.Length; i++)
-            {
-                difference += Math.Abs(textFrequencies[i] - referenceFrequencies[i]);
-            }
-
-            return difference;
-        }
+        return detectedLanguage;
     }
 }
