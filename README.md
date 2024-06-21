@@ -183,3 +183,11 @@ Schlussendlich gibt mir nun das Programm die gerade errechneten Wahrscheinlichke
 - [ ] C# Programm für Englisch einrichten
 - [ ] C# Programm für Franzöisch einrichten
 - [ ] C# Programm Sprache ausgeben + Wahrscheinlichkeiten verstecken
+
+Am heutigen Tag bin ich leider nicht so weit gekommen, wie ich gewünscht hätte, zum einen brauchte ich sehr viel Zeit, um mein Programm umzuschreiben, da ich inmitten eines Tipps von Herrn Colic nachkommen wollte, durch welchen ich schliesslich das Programm hätte einfacher schreiben könnten, dadurch das ich einen Trainingsmodus direkt ins richtige Programm zu implementieren, da ich so Fehlverbesserungen der Daten vermeiden könnte. Da dies nun jedoch so lange gedauert hat und ich nicht mehr weiß, wieso das Programm nicht mehr funktioniert, bin ich bedauerlicherweise bis jetzt nicht fertig geworden. (91)
+
+
+## Arbeitspakete 28.06.2024
+
+- [ ] Programm erkennt den Text im Trainingsmodus und kann die Daten im Textfile abspeichern.
+- [ ] Programm kann im Testmodus zwischen Deutsch und Englisch unterscheiden.
