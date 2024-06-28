@@ -191,3 +191,16 @@ Am heutigen Tag bin ich leider nicht so weit gekommen, wie ich gewünscht hätte
 
 - [ ] Programm erkennt den Text im Trainingsmodus und kann die Daten im Textfile abspeichern.
 - [ ] Programm kann im Testmodus zwischen Deutsch und Englisch unterscheiden.
+
+
+
+Am heutigen Tage habe ich damit gestartet, die Arbeitspakete zu erledigen welche ich mir vorgenommen habe. Ich bin jedoch nicht soweit gekommen wie gewollt. Bezüglich meiner ganzen Lernperiode muss ich ebenfalls eingestehen das ich diese Lernperiode den VBV nicht erfüllen konnte da ich denoch an der Website gearbeitet habe. 
+
+Ich habe leider über die dauer des Lernatteliers mein Ziel für das Projekt mehrfach geändert. Schlussendlich habe ich aber leider nichtmal eine Abgespeckte Version erstellen können da ich noch einen zusätzliches Element hinzugefügt habe welches nicht mehr wegzudenken war. Dennoch ist ein Programm dabei herausgekommen welches funktionsfähig ist jedoch nicht mit der gewünschten Funktionen. 
+
+![image](https://github.com/Entlino/Lern-Periode-5/assets/111046353/ac25cb76-4286-4e96-a727-d0f14846871a)
+
+
+![image](https://github.com/Entlino/Lern-Periode-5/assets/111046353/d3c8eebf-2b20-42c4-aaee-7f6c8efd45a2)
+
+
