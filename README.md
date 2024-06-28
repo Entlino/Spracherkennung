@@ -204,3 +204,7 @@ Ich habe leider über die dauer des Lernatteliers mein Ziel für das Projekt meh
 ![image](https://github.com/Entlino/Lern-Periode-5/assets/111046353/d3c8eebf-2b20-42c4-aaee-7f6c8efd45a2)
 
 
+
+## Reflexion
+
+In diesem Jahr habe ich gelernt besser mit SQL/PowerShell umzugehen, der rest war mir bereits relativ bekannt. Zudem konnte ich lernen wie wichtig eine saubere Planung ist da es einem das Leben um einiges vereinfachen kann. Im nächsten Jahr möchte ich zum einen abwechslungsreichere Projekte durchführen aber zum anderen auch weniger Vornehmen damit ich mehr Projekte komplett abschliessen kann und mir somit ein Bewerbungsportfolio anlegen kann. Am Lernattelier hat mir besonders die selbstständige Arbeit gefallen. Zudem würde ich mir für das nächste Jahr wünschen wenn es öfters Homeschooling gäbe, da es für mich nur Vorteile bringt wenn ich mir den Schulweg von über 1h sparen kann und dennoch mit alles per Call zusammenarbeiten kann.
